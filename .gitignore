@@ -1,0 +1,9 @@
+.terraform
+*.tfstate.backup
+*.tfstate.*.backup
+*.plan
+*.tfplan
+*.swp
+.idea/
+.secrets/
+.DS_Store
