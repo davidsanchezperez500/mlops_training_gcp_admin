@@ -1,0 +1,45 @@
+name: Example GCP WIF with GitHub Actions
+
+on:
+  push:
+    branches:
+      - workload_identity
+
+jobs:
+  job_id:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      # actions/checkout MUST come before auth
+
+      - uses: 'actions/checkout@v3'
+
+      - id: "auth"
+        name: "Authenticate to Google Cloud"
+        uses: "google-github-actions/auth@v2"
+        with:
+          token_format: "access_token"
+          workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: "${{ vars.GCP_SERVICE_ACCOUNT }}"
+          
+          export_environment_variables: true
+          create_credentials_file: true
+          access_token_lifetime: 500
+
+    # Further steps are automatically authenticated
+
+      - name: "Set up Cloud SDK"
+        uses: "google-github-actions/setup-gcloud@v1"
+        with:
+          version: ">= 390.0.0"
+
+      - name: Check currently authenticated user
+        run: gcloud auth list
+
+    # Interact with google cloud
+
+      - name: Run gcloud
+        run: gcloud storage buckets list
