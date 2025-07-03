@@ -3,7 +3,7 @@ name: Example GCP WIF with GitHub Actions
 on:
   push:
     branches:
-      - workload_identity
+      - workload_identity*****
 
 jobs:
   job_id:
