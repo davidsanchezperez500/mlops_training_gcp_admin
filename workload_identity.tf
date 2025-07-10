@@ -33,5 +33,7 @@ resource "google_service_account_iam_binding" "github_runner_oidc" {
   role               = "roles/iam.workloadIdentityUser"
   members = [
   "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_pool.name}/attribute.repository/davidsanchezperez500/mlops_scikit_learn_project_houses",
+  "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_pool.name}/attribute.repository/davidsanchezperez500/mlops_scikit_learn_project_houses_serving",
+  "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.github_pool.name}/attribute.repository/davidsanchezperez500/mlops_scikit_learn_project_houses_function_cron_training",
   ]
 }

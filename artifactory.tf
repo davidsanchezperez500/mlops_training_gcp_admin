@@ -29,7 +29,6 @@ resource "google_kms_crypto_key_iam_binding" "crypto_key_artifact_registry_repos
 
   members = [
     "user:david.mlops.training@gmail.com",
-    "serviceAccount:terraform-admin@mlops-training-462812.iam.gserviceaccount.com",
     "serviceAccount:service-808452778180@gcp-sa-artifactregistry.iam.gserviceaccount.com"
   ]
 }
