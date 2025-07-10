@@ -25,6 +25,13 @@ data "google_iam_policy" "mlops_training_iam_policy" {
   }
 
   binding {
+    role = "roles/editor"
+    members = [ 
+      "serviceAccount:github-runner-service-account@mlops-training-462812.iam.gserviceaccount.com"
+    ]
+  }
+
+  binding {
     role = "roles/storage.admin"
     members = [
       "serviceAccount:service-${var.project_number}@gcp-sa-aiplatform.iam.gserviceaccount.com",
