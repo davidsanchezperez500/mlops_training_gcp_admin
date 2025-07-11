@@ -130,8 +130,13 @@ data "google_iam_policy" "mlops_training_iam_policy" {
       "serviceAccount:service-${var.project_number}@gcp-sa-eventarc.iam.gserviceaccount.com",
     ]
   }
-
-
+  binding {
+    role = "roles/containerregistry.ServiceAgent"
+    members = [
+      "serviceAccount:service-${var.project_number}@containerregistry.iam.gserviceaccount.com",
+    ]
+  }
+  
   depends_on = [ google_project_service.project ]
 }
 
