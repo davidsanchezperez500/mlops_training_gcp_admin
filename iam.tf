@@ -20,6 +20,7 @@ data "google_iam_policy" "mlops_training_iam_policy" {
     role = "roles/editor"
     members = [ 
       "serviceAccount:github-runner-service-account@${var.project_id}.iam.gserviceaccount.com",
+      "serviceAccount:${var.project_number}-compute@developer.gserviceaccount.com",
     ]
   }
 
